@@ -34,7 +34,18 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	completedURL, err := composeURL(conf.Get("host").(string), conf.Get("url").(string))
+
+	fmt.Println("---- proxy: ", proxy)
+
+	hosts := conf.Get("hosts").([]string)
+	fmt.Println("---- hosts: ")
+	for _, host := range hosts {
+		fmt.Println("     * ", host)
+	}
+
+	url := conf.Get("url").(string)
+	fmt.Println("---- url: ", url)
+	completedURL, err := composeURL(hosts[0], url)
 	if err != nil {
 		fmt.Println(err)
 		return

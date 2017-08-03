@@ -1,8 +1,10 @@
 package main
 
 import (
+	"errors"
 	"flag"
 	"fmt"
+	"strings"
 
 	config "github.com/ssor/go_config"
 	"github.com/ssor/proxy_url_to_hosts/prequest"
@@ -62,10 +64,24 @@ func getRequestParams(conf config.IConfigInfo) (proxy, url string, hosts []strin
 }
 
 func validateProxyHost(host string) (string, error) {
+	if strings.HasSuffix(host, "/") == true {
+		host = host[:len(host)-1]
+	}
+	httpPrefix := "http://"
+
+	if strings.HasPrefix(host, httpPrefix) == false {
+		return "", errors.New("no http")
+	}
 	return host, nil
 }
 
 func composeURL(host, url string) string {
+	if strings.HasSuffix(host, "/") == true {
+		host = host[:len(host)-1]
+	}
+	if strings.HasPrefix(url, "/") == false {
+		url = "/" + url
+	}
 	return fmt.Sprintf("%s%s", host, url)
 }
 

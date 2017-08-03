@@ -1,5 +1,5 @@
 {
-    "url":"/sku/alad?filt_type=expand_name,46324::3969&aid=1000921&pagesize=60&area_ids=1,72,4137,0&sort_type=sort_rank_asc&stock=0&page=1&md=0&ms=0&ver=a&rid=4a64448d-6f57-34da-83e9-f5c85accaa4c",
+    "url":"/ab/cd",
     "proxy":"http://localhost:8130",
-    "hosts":["http://10.190.230.46:9000","http://10.190.230.46:9000"]
+    "hosts":["http://host1:9000","http://host2:9000"]
 }
